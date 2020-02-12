@@ -122,7 +122,7 @@ class PrivateAgent(Agent.Movies):
     try:
       metadata.roles.clear()
       titleActors = ""
-      actors = html.xpath('//ul[@id="featured_pornstars"]//li[@class=" col-lg-3 col-md-4 col-sm-4 col-xs-6 col-sm-6 col-xs-6 "]')
+      actors = html.xpath('//ul[@id="featured_pornstars"]//li[@class=" col-lg-2 col-md-4 col-sm-4 col-xs-6 "]')
       if len(actors) > 0:
           for actorPage in actors:
               actorName = actorPage.xpath('.//div[@class="model"]//a')[0].get("title")
