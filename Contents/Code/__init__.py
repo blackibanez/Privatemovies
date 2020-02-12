@@ -119,6 +119,7 @@ class PrivateAgent(Agent.Movies):
       Log('Got an exception while parsing Release Date %s' %str(e))
 
     # Cast - added updated by Briadin / 20190108
+    Log('Search for Cast')
     try:
       metadata.roles.clear()
       titleActors = ""
