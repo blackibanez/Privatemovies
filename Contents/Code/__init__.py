@@ -132,7 +132,7 @@ class PrivateAgent(Agent.Movies):
               role = metadata.roles.new()
               role.name = actorName
               role.photo = actorPhotoURL
-              Log("Name Actor : " + actorName + "Url Photo : " + str(actorPhotoURL))
+              Log("Name Actor : " + actorName + " Url Photo : " + str(actorPhotoURL))
           titleActors = titleActors[:-3]
           metadata.title = metadata.title
     except Exception, e:
