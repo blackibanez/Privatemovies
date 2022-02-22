@@ -123,12 +123,14 @@ class PrivateAgent(Agent.Movies):
     try:
       metadata.roles.clear()
       titleActors = ""
-      actors = html.xpath('//ul[@id="featured_pornstars"]//li[@class=" col-lg-2 col-md-4 col-sm-4 col-xs-6 "]')
+      actors = html.xpath('//span[@itemprop="actor"]')
       if len(actors) > 0:
           for actorPage in actors:
-              actorName = actorPage.xpath('.//div[@class="model"]//a')[0].get("title")
+              actorName = actorPage.xpath('.//span[@itemprop="name"]')[0].text_content()
+              actorpageURL = actorPage.xpath('.//a[@itemprop="url"]')[0].get('href')
               titleActors = titleActors + actorName + " & "
-              actorPhotoURL = actorPage.xpath('.//div[@class="model"]//a//picture//img')[0].get("src")
+              actorPagePhotoUrl=HTML.ElementFromURL(str(actorpageURL))
+              actorPhotoURL = actorPagePhotoUrl.xpath('//div[@class="img-pornstar col-md-4 col-sm-6"]//img')[0].get("data-src")
               role = metadata.roles.new()
               role.name = actorName
               role.photo = actorPhotoURL
@@ -137,7 +139,6 @@ class PrivateAgent(Agent.Movies):
           metadata.title = metadata.title
     except Exception, e:
       Log('Got an exception while parsing cast %s' %str(e))
-
     # Director
     try:
       metadata.directors.clear()
